@@ -207,6 +207,8 @@ git-change () { git blame $1 | grep 'Not Committed'; }
 git-who () { git blame $1 | grep $2; }
 git-me () { git-who $1 joelrodiel; }
 
+cp-node() { rsync -av --progress $1 $2 --exclude node_modules/; }
+
 bashme () { sudo vim +127 ~/.bashrc && source ~/.bashrc; }
 
 ### These are more cool than anything ###
