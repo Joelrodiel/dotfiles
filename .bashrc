@@ -116,14 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/hoel/.sdkman"
-[[ -s "/home/hoel/.sdkman/bin/sdkman-init.sh" ]] && source "/home/hoel/.sdkman/bin/sdkman-init.sh"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 ##############################
 #### Yall ready for this? ####
 ##############################
@@ -131,9 +123,12 @@ export NVM_DIR="$HOME/.nvm"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+export WINDOWS=/mnt/c/Users/joelr/
+export CS=/mnt/c/Users/joelr/Documents/CS61A/
+export DISPLAY=:0
+
 alias cp='cp -iv'
 alias mv='mv -iv'
-alias rm='rm -v'
 alias mkdir='mkdir -pv'
 cd () { builtin cd "$@"; ls; }
 md () { mkdir -p "$@" && cd "$@"; }
@@ -201,16 +196,33 @@ alias git-main='git pull origin master'
 alias git-whereami='git remote -v'
 alias git-poku='git-p heroku'
 alias git-bhot='git-nb hotfix/'
+alias git-poki='git-pom && git-poku'
 
 git-hotfix () { git-b hotfix/$1 $2; }
 git-change () { git blame $1 | grep 'Not Committed'; }
 git-who () { git blame $1 | grep $2; }
 git-me () { git-who $1 joelrodiel; }
 
-cp-node() { rsync -av --progress $1 $2 --exclude node_modules/; }
+cp-node() { rsync -av --progress $1 $2 --exclude node_modules/ .git/; }
+
+alias npmI='npm i --save'
+
+alias whome='cd /mnt/c/Users/joelr/'
 
 bashme () { sudo vim +127 ~/.bashrc && source ~/.bashrc; }
 
 ### These are more cool than anything ###
 
-getnews() { curl https://newsapi.org/v2/top-headlines -s -G -d sources=$1 -d apiKey=e35072b5370f490090d23c1e7d5561e2 | jq '.articles[] | .title'; }
+getnews() { curl https://newsapi.org/v2/top-headlines -s -G -d sources=$1 -d apiKey=e35072b5370f490090d23c1e7d5561e2; } #| jq '.articles[] | .title'; }
+
+export NVM_DIR="/home/hoel/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+## CS61A CMD ##
+alias py='python3'
+alias pok='py ok'
+alias pokS='py ok --submit'
+alias pokQ='py ok -q'
+pokQU () { pokQ $1 -u; }
+
+alias WINDOWS_HOME='C:\Users\joelr\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\hoel'
