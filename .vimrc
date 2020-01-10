@@ -15,7 +15,7 @@ set timeout timeoutlen=300 " For those pesky double keys
 
 imap <C-c> <C-o>daw
 imap jj <Esc>
-imap oo <C-o>o
+imap kk <C-o>o
 map <F2> :w<CR>
 imap <F2> <Esc>:w<CR>
 map <F3> :wq<CR>
